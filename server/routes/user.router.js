@@ -9,8 +9,22 @@ const router = express.Router();
 // Handles Ajax request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
-  res.send(req.user);
+  res.send(req.user)
 });
+
+router.get('/userinfo', (req,res)=> {
+  let sqlText = `SELECT person.username, COUNT(item.id) FROM item 
+  JOIN person ON item.person_id = person.id
+  GROUP BY person.username`
+  pool.query(sqlText)
+  .then(response => {
+    res.send(response.rows);
+    console.log(response.rows)
+  })
+  .catch(err => {console.log(err)})
+  
+})
+
 
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
