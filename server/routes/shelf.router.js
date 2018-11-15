@@ -13,8 +13,29 @@ router.get('/', (req, res) => {
 /**
  * Add an item for the logged in user to the shelf
  */
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+    console.log(`in shelf.router.js POST for '/'`);
+    const client = await pool.connect();
 
+    try {
+        const {
+            description,
+            imageUrl,
+            personId
+        } = req.body;
+        await client.query('BEGIN')
+        await client.query(`INSERT INTO item ("description","image_url","person_id")
+        VALUES ($1, $2, $3);`, [description, imageUrl, personId]);
+
+        await client.query('COMMIT')
+        res.sendStatus(201);
+    } catch (error) {
+        await client.query('ROLLBACK')
+        console.log('Error post /shelf', error);
+        res.sendStatus(500);
+    } finally {
+        client.release()
+    }
 });
 
 
