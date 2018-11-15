@@ -37,7 +37,7 @@ class CardItem extends Component {
   return (
     <div>
         {this.props.reduxState.shelf.map( item =>(
-          <section>
+          <section className="display" >
           <Card id="card" key={item.id}>
             <CardActionArea>
               <CardMedia
