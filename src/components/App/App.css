@@ -52,5 +52,5 @@ input {
 #card {
     margin: 25px;
     height: auto;
-    min-width: 350px;
+    max-width: 350px;
 }
