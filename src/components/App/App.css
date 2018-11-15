@@ -52,5 +52,12 @@ input {
 #card {
     margin: 25px;
     height: auto;
+    min-width: 300px;
     max-width: 350px;
+    
+}
+
+/* section containing card */
+.display {
+    display: inline-block;
 }
