@@ -6,6 +6,6 @@
         return state;
     }
   }
-
+  
   export default shelf;
   

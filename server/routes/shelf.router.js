@@ -5,9 +5,23 @@ const router = express.Router();
 /**
  * Get all of the items on the shelf
  */
+// router.get('/', (req, res) => {
+//     res.sendStatus(200); // For testing only, can be removed
+// });
+// GET Route to get items 
 router.get('/', (req, res) => {
-    res.sendStatus(200); // For testing only, can be removed
-});
+    let sqlText = `SELECT * FROM "item" ORDER BY "id" DESC;`;
+    pool.query(sqlText)
+        .then((result) => {
+            res.send(result.rows);
+            console.log(result.rows);
+
+        })
+        .catch((error) => {
+            console.log('error', error);
+            res.sendStatus(500);
+        })
+}); // END GET Route
 
 
 /**
@@ -42,9 +56,26 @@ router.post('/', async (req, res) => {
 /**
  * Delete an item if it's something the logged in user added
  */
-router.delete('/:id', (req, res) => {
+// router.delete('/:id', (req, res) => {
 
-});
+// });
+// DELETE
+router.delete('/:id', (req, res) => {
+    let reqId = req.params.id;
+    console.log('Delete request for id', reqId);
+    let sqlText = `DELETE FROM item WHERE id=$1;`;
+    console.log(sqlText);
+
+    pool.query(sqlText, [reqId])
+        .then((result) => {
+            console.log('item deleted');
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log(`Error in deleting ${sqlText}`, error);
+            res.sendStatus(500);
+        })
+})
 
 
 /**
