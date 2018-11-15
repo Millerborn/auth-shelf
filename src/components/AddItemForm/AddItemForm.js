@@ -55,6 +55,11 @@ class AddItemForm extends Component {
         event.preventDefault();
         console.log('submit:', this.state);
         this.props.dispatch({ type: 'ADD_ITEM', payload: this.state });
+        this.setState({
+            ...this.state,
+            description: '',
+            imageUrl: ''
+        })
     }
 
     componentDidMount() {
