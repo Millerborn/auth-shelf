@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
+
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
@@ -15,6 +16,7 @@ const UserPage = (props) => (
     </h1>
     <p>Your ID is: {props.user.id}</p>
     <LogOutButton className="log-in" />
+
     {/* {JSON.stringify(props.allUsersReducer)} */}
     
     {props.allUsersReducer.map(users => {
@@ -32,6 +34,7 @@ const UserPage = (props) => (
         </Card>
       </div>)
     })}
+
   </div>
 );
 

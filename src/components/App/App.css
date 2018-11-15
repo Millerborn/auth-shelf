@@ -47,3 +47,17 @@ input {
     border-bottom:1px solid #444; 
     cursor: pointer;
 }
+
+/* item card styles */
+#card {
+    margin: 25px;
+    height: auto;
+    min-width: 300px;
+    max-width: 350px;
+    
+}
+
+/* section containing card */
+.display {
+    display: inline-block;
+}
