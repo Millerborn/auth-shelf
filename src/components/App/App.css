@@ -53,4 +53,5 @@ input {
     margin: 25px;
     height: auto;
     max-width: 350px;
+    display: inline-block;
 }
