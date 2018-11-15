@@ -25,9 +25,23 @@ function* fetchItems(action) {
     }
 }
 
+// saga to deletes items from server
+function* deleteItemSaga (action) {
+    console.log('in itemsSaga', action.payload);
+    const itemid = action.payload
+    try {
+        yield call(axios.delete, `/api/shelf/${itemid}`);
+        yield put( { type: 'FETCH_ITEMS' } );
+    }
+    catch(error) {
+        console.log('error with delete request', error);
+    }
+}
+
 function* itemSaga() {
     yield takeEvery('FETCH_ITEMS', fetchItems);
     yield takeEvery('ADD_ITEM', addItem);
+    yield takeEvery('DELETE_ITEM', deleteItemSaga)
     // yield takeEvery('FETCH_USER_ITEMS', userItems);
 }
 

@@ -8,7 +8,7 @@
   }
 
 
-// loginMode will be on the redux state at:
-// state.loginMode
-  export default loginMode;
+// shelf will be on the redux state at:
+// state.shelf
+  export default shelf;
   
