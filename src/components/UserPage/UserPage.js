@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import CardItem from '../CardItem/CardItem'
+
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
@@ -13,7 +16,25 @@ const UserPage = (props) => (
     </h1>
     <p>Your ID is: {props.user.id}</p>
     <LogOutButton className="log-in" />
-    <CardItem/>
+
+    {/* {JSON.stringify(props.allUsersReducer)} */}
+    
+    {props.allUsersReducer.map(users => {
+      return (
+      <div>
+        <Card style={{width: 200}}>
+          <CardContent>
+            <Typography>
+              {users.username}
+            </Typography>
+            <Typography>
+              Items: {users.count}
+            </Typography>
+          </CardContent>
+        </Card>
+      </div>)
+    })}
+
   </div>
 );
 
@@ -22,6 +43,7 @@ const UserPage = (props) => (
 // const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
   user: state.user,
+  allUsersReducer: state.allUsersReducer
 });
 
 // this allows us to use <App /> in index.js
