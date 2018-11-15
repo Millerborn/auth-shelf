@@ -5,6 +5,27 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import UppyUpload from '../UppyUpload/UppyUpload'
+// const Uppy = require('@uppy/core')
+// const Tus = require('@uppy/tus')
+// const { DragDrop } = require('@uppy/react')
+
+// const uppy = Uppy({
+//    meta: { type: 'avatar' },
+//    restrictions: { maxNumberOfFiles: 1 },
+//    autoProceed: true
+//  })
+ 
+//  uppy.use(Tus, { endpoint: '/upload' })
+ 
+//  uppy.on('complete', (result) => {
+//    const url = result.successful[0].uploadURL
+//    store.dispatch({
+//      type: SET_USER_AVATAR_URL,
+//      payload: { url: url }
+//    })
+//  })
+ 
 
 const styles = theme => ({
     button: {
@@ -44,6 +65,13 @@ class AddItemForm extends Component {
         personId: null
     }
 
+    setUrl = (url) => {
+       this.setState({
+          ...this.state,
+          imageUrl: url
+       })
+    }
+    
     handleChangeFor = (propertyName) => (event) => {
         this.setState({
             ...this.state,
@@ -102,6 +130,8 @@ class AddItemForm extends Component {
                             shrink: true,
                         }}
                     /><br></br>
+                    <UppyUpload setUrl={this.setUrl}/>
+                    
                     <Button type="submit" variant="contained" className={classes.button}>
                         Submit
                     </Button>
