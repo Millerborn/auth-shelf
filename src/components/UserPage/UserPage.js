@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
-
+import CardItem from '../CardItem/CardItem';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
@@ -22,6 +22,7 @@ const UserPage = (props) => (
     {props.allUsersReducer.map(users => {
       return (
       <div>
+        <CardItem />
         <Card style={{width: 200}}>
           <CardContent>
             <Typography>
