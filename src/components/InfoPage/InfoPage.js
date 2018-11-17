@@ -10,8 +10,8 @@ const InfoPage = () => (
   <div>
     <p>
       Info Page
-      <AddItemForm />
     </p>
+    <AddItemForm />
   </div>
 );
 
